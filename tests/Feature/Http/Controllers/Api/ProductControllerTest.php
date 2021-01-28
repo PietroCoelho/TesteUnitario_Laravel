@@ -19,22 +19,29 @@ class ProductControllerTest extends TestCase
 
     public function can_create_a_product()
     {
+        $this->withoutExceptionHandling();
         $faker = Factory::create();
         // Given -> Dado
         // user is authenticated -> o usuário está autenticado
         // when -> Quando
         $response = $this->json('POST', '/api/product', [
             'name' => $name = $faker->company,
-            'slug' => Str_slug($name),
+            'slug' => str_slug($name),
             'price' => $price = random_int(10, 100),
         ]);
         // post request create product -> post request criar produto
         // then -> Então
         // product exists -> Produto Existe
-        $response->assertJsonStructure([
-            'id', 'name', 'slug', 'price', 'created_at'
-        ])
+        $response
+            ->assertJsonStructure(['id', 'name', 'slug', 'price', 'created_at'])
+            ->assertJson([
+                'name' => $name,
+                'slug' => str_slug($name),
+                'price' => $price
+            ])
             ->assertStatus(201);
+
+        // dd($response);
 
         $this->assertDatabaseHas('products', [
             'name' => $name,
