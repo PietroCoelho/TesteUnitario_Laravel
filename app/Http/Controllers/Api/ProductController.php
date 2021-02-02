@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Http\Resources\ProductResource;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 use Exception;
 
 class ProductController extends Controller
@@ -16,7 +17,7 @@ class ProductController extends Controller
         try {
             $Product = Product::create([
                 'name' => $request->name,
-                'slug' => str_slug($request->name),
+                'slug' => Str::slug($request->name),
                 'price' => $request->price
             ]);
 

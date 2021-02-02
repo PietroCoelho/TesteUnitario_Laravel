@@ -2,6 +2,7 @@
 
 namespace Tests\Feature\Http\Controllers\Api;
 
+use Illuminate\Support\Str;
 use App\Models\Product;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
@@ -47,7 +48,7 @@ class ProductControllerTest extends TestCase
             ->assertJson([
                 'data' => [
                     'name' => $name,
-                    'slug' => str_slug($name),
+                    'slug' => Str::slug($name),
                     'price' => $price
                 ]
             ])

@@ -17,4 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/login', function () {
 return view('welcome');
 });
-Route::resource('/costumers','App\Http\Controllers\CostumerController')->middleware('auth');
+// Route::resource('/costumers','App\Http\Controllers\CostumerController')->middleware('auth');
+
