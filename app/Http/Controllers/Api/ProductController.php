@@ -12,6 +12,14 @@ use Exception;
 class ProductController extends Controller
 {
     //
+    public function index()
+    {
+        $Product = Product::all($this->params);
+        // $Product->$this->getList();
+        // dd($Product);
+        return $Product;
+
+    }
     public function store(Request $request)
     {
         try {
@@ -22,7 +30,7 @@ class ProductController extends Controller
             ]);
 
             // dd($Product);
-            return response()->json(['data' => new ProductResource($Product)], 201);
+            return response()->json(['data' .$Product. 'adicionado com sucesso'], 201);
         } catch (Exception $e) {
             return response()->json(['message' => $e->getMessage()], 400);
         }

@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory;
     protected $guarded = ['id'];
     protected $fillabel = [];
     public $timestamps = false;
@@ -21,6 +20,6 @@ class Product extends Model
             $build->where('products.name', $params['name']);
         }
 
-        return $build;
+        return $build->get();
     }
 }
